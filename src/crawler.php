@@ -218,13 +218,13 @@ class Crawler{
 			'fer_nac_fixo' => '',
 			'totfernacfixo' => '', 
 			'fer_est_fixo' => '',
-			'totferestfixo' => '',
+			'totferestfixo' => '0',
 			'fer_est_Event' => '',
-			'totferestEvent' => '',
+			'totferestEvent' => '0',
 			'fer_munic_fixo' => '',
-			'totfermunicfixo' => '',
+			'totfermunicfixo' => '0',
 			'fer_munic_Event' => '',
-			'totfermunicEvent' => '',
+			'totfermunicEvent' => '0',
 			'datalimite' => '',
 			'CInicioPeriodicidade1' => '',
 			'CFimPeriodicidade1' => '',
@@ -232,16 +232,16 @@ class Crawler{
 			'CFimPeriodicidade2' => '',
 			'CInicioPeriodicidade3' => '',
 			'CFimPeriodicidade3' => '',
-			'CInicioPeriodicidade4' => '',
-			'CFimPeriodicidade4' => '',
-			'CInicioPeriodicidade5' => '',
-			'CFimPeriodicidade5' => '',
-			'CInicioPeriodicidade6' => '',
-			'CFimPeriodicidade6' => '',
-			'CInicioPeriodicidade7' => '',
-			'CFimPeriodicidade7' => '',
-			'CInicioPeriodicidade8' => '',
-			'CFimPeriodicidade8' => '',
+			// 'CInicioPeriodicidade4' => '',
+			// 'CFimPeriodicidade4' => '',
+			// 'CInicioPeriodicidade5' => '',
+			// 'CFimPeriodicidade5' => '',
+			// 'CInicioPeriodicidade6' => '',
+			// 'CFimPeriodicidade6' => '',
+			// 'CInicioPeriodicidade7' => '',
+			// 'CFimPeriodicidade7' => '',
+			// 'CInicioPeriodicidade8' => '',
+			// 'CFimPeriodicidade8' => '',
 			'TotalPeriodicidade' => '',
 			'periodo' => '',
 			'PA' => '',
@@ -460,7 +460,7 @@ class Crawler{
 
 		$dateAux = new \DateTime($this->convertDate($data['DT_Consolidacao']));
 
-		$dateAux->modify('+1 day');
+		// $dateAux->modify('+1 day');
 
 		$data['DT_Consolidacao'] = $dateAux->format('d/m/Y');
 
@@ -482,6 +482,30 @@ class Crawler{
 
 		if (!$data['VA_MULTA_OFICIO_ATUALIZADO'])
 			$data['VA_MULTA_OFICIO_ATUALIZADO'] = 0;
+
+		if (!$data['VA_MULTA_MORA_ATUALIZADO'])
+			$data['VA_MULTA_MORA_ATUALIZADO'] = 0;
+
+		if (!$data['VA_JUROS_MORA_IMPOSTO_ATUALIZADO'])
+			$data['VA_JUROS_MORA_IMPOSTO_ATUALIZADO'] = 0;
+		
+		if (!$data['VA_MULTA_OFICIO_ATUALIZADO'])
+			$data['VA_MULTA_OFICIO_ATUALIZADO'] = 0;
+		
+		if (!$data['VA_JUROS_MORA_MULTA_ATUALIZADO'])
+			$data['VA_JUROS_MORA_MULTA_ATUALIZADO'] = 0;
+
+		if (!$data['VA_SOMATORIO_JUROS_MORA'])
+			$data['VA_SOMATORIO_JUROS_MORA'] = 0;
+		
+		if (!$data['VA_PERCENTUAL_MULTA_MORA'])
+			$data['VA_PERCENTUAL_MULTA_MORA'] = 0;
+
+		if (!$data['VA_PERCENTUAL_JUROS_MORA_IMPOSTO'])
+			$data['VA_PERCENTUAL_JUROS_MORA_IMPOSTO'] = 0;
+
+		if (!$data['VA_PERCENTUAL_JUROS_MORA_MULTA'])
+			$data['VA_PERCENTUAL_JUROS_MORA_MULTA'] = 0;
 		
 		$data['Num_Princ'] = substr($this->data['cnpj'], 0,12);
 
@@ -499,7 +523,7 @@ class Crawler{
 		}
 
 		$text_capcth = $this->resolveCaptcha($dataCaptch['path']);
-			
+
 		try {
 			
 			unlink($dataCaptch['path']);
@@ -518,6 +542,7 @@ class Crawler{
 		$html = $this->execCurl($this->urls[$this->fase + 1], 'POST', $data, null, false);
 
 		$this->text_html = $html;
+
 	}
 
 	public function fase_6(){
@@ -564,7 +589,7 @@ class Crawler{
 			'DT_PRORROGACAO' => '',
 			'VA_CT_PRINCIPAL' => '',
 			'CD_MOEDA' => '',
-			'PE_MULTA_OFICIO' => '',
+			'PE_MULTA_OFICIO' => '0',
 			'CD_IDENTIFICACAO_CT' => '',
 			'DT_LIMITE_PAGAMENTO' => '',
 			'IN_REDUCAO_MULTA' => '',
@@ -612,7 +637,7 @@ class Crawler{
 
 		$dateAux = new \DateTime($this->convertDate($data['DT_LIMITE_PAGAMENTO']));
 
-		$dateAux->modify('+1 day');
+		// $dateAux->modify('+1 day');
 
 		$data['DT_LIMITE_PAGAMENTO'] = $dateAux->format('d/m/Y');
 
@@ -627,14 +652,40 @@ class Crawler{
 
 		if(!$data['VA_PERCENTUAL_REDUCAO_MULTA'])
 			$data['VA_PERCENTUAL_REDUCAO_MULTA'] = 0;
+		
+		if(!$data['VA_MULTA_MORA_ATUALIZADO'])
+			$data['VA_MULTA_MORA_ATUALIZADO'] = 0;
+		
+		if(!$data['VA_JUROS_MORA_IMPOSTO_ATUALIZADO'])
+			$data['VA_JUROS_MORA_IMPOSTO_ATUALIZADO'] = 0;
+		
+		if(!$data['VA_MULTA_OFICIO_ATUALIZADO'])
+			$data['VA_MULTA_OFICIO_ATUALIZADO'] = 0;
+
+		if(!$data['VA_JUROS_MORA_MULTA_ATUALIZADO'])
+			$data['VA_JUROS_MORA_MULTA_ATUALIZADO'] = 0;
+		
+		if(!$data['VA_SOMATORIO_JUROS_MORA'])
+			$data['VA_SOMATORIO_JUROS_MORA'] = 0;
+		
+		if(!$data['VA_PERCENTUAL_MULTA_MORA'])
+			$data['VA_PERCENTUAL_MULTA_MORA'] = 0;
+		
+		if(!$data['VA_PERCENTUAL_JUROS_MORA_IMPOSTO'])
+			$data['VA_PERCENTUAL_JUROS_MORA_IMPOSTO'] = 0;
+		
+		if(!$data['VA_PERCENTUAL_JUROS_MORA_MULTA'])
+			$data['VA_PERCENTUAL_JUROS_MORA_MULTA'] = 0;
 
 		$data['PagSubmit'] = 0;
+		
 
 		$this->data = array_merge($this->data, $data);
 		
 		$html = $this->execCurl($this->urls[$this->fase + 1], 'POST', $data, null, false);
 
 		$this->text_html = $html;
+
 	}
 
 	public function fase_7(){
@@ -689,7 +740,8 @@ class Crawler{
 			$this->error[] = 'Não foi possivel gerar o a Darf.';
 		}	
 
-
+		print_r($this->text_html);
+		var_dump('Final fase 7');
 	}
 
 	private function savePDF($html){
