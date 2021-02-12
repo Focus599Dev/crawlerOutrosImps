@@ -530,7 +530,7 @@ class Crawler{
 
 		} catch (\Exception $e) {
 			
-			var_dump($e->getMessage());	
+			// var_dump($e->getMessage());	
 		}
 
 		$data['txtTexto_captcha_serpro_gov_br'] = $text_capcth;
@@ -740,8 +740,6 @@ class Crawler{
 			$this->error[] = 'Não foi possivel gerar o a Darf.';
 		}	
 
-		print_r($this->text_html);
-		var_dump('Final fase 7');
 	}
 
 	private function savePDF($html){
